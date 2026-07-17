@@ -460,64 +460,7 @@
       text-align: center;
     }
 
-    /* email capture */
-    .email-divider {
-      margin-top: 1.5rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--w10);
-    }
-    .email-eyebrow {
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(200,188,158,0.6);
-      margin-bottom: 0.35rem;
-    }
-    .email-sub { font-size: 0.8rem; color: rgba(200,188,158,0.55); margin-bottom: 0.85rem; line-height: 1.5; }
-    .field-row { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 0.65rem; }
-    input[type=text], input[type=email] {
-      flex: 1;
-      min-width: 130px;
-      padding: 0.65rem 0.9rem;
-      background: var(--w5);
-      border: 1px solid var(--w10);
-      border-radius: 9999px;
-      font-family: inherit;
-      font-size: 0.85rem;
-      color: var(--cream);
-      outline: none;
-      transition: border-color 0.15s;
-    }
-    input[type=text]::placeholder, input[type=email]::placeholder { color: rgba(200,188,158,0.45); }
-    input[type=text]:focus, input[type=email]:focus { border-color: var(--gold-30); }
-    .btn-email {
-      width: 100%;
-      padding: 0.65rem 1rem;
-      background: var(--w10);
-      border: 1px solid var(--w10);
-      border-radius: 9999px;
-      font-family: inherit;
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: var(--cream);
-      cursor: pointer;
-      transition: background 0.15s;
-    }
-    .btn-email:hover { background: rgba(201,169,110,0.15); border-color: var(--gold-20); }
-    .error-msg {
-      display: none;
-      font-size: 0.78rem;
-      color: #e07060;
-      margin-bottom: 0.5rem;
-    }
-    .email-confirm {
-      display: none;
-      font-size: 0.78rem;
-      color: rgba(200,188,158,0.7);
-      text-align: center;
-      margin-top: 0.5rem;
-    }
+
 
     /* Animations */
     @keyframes fadeUp {
@@ -723,18 +666,7 @@
             </a>
             <p class="upsell-price">$39 / month &nbsp;·&nbsp; Cancel any time &nbsp;·&nbsp; Houston, TX</p>
 
-            <!-- Soft email capture -->
-            <div class="email-divider">
-              <p class="email-eyebrow">Want a copy sent to you?</p>
-              <p class="email-sub">Leave your name and email and Brock will send your results plus a free somatic reset guide.</p>
-              <div class="field-row">
-                <input type="text"  id="first-name" placeholder="First name"     autocomplete="given-name"/>
-                <input type="email" id="email"      placeholder="Email address"  autocomplete="email"/>
-              </div>
-              <p class="error-msg" id="error-msg"></p>
-              <button class="btn-email" id="email-btn" onclick="submitEmail()">Send Me the Results</button>
-              <p class="email-confirm" id="email-confirm">Got it — check your inbox.</p>
-            </div>
+
           </div>
         </div>
 
@@ -838,21 +770,7 @@
       : '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>';
   }
 
-  function validateEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
-  function submitEmail() {
-    const name  = document.getElementById('first-name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const err   = document.getElementById('error-msg');
-    if (!name || !validateEmail(email)) {
-      err.style.display = 'block';
-      err.textContent   = !name ? 'Please enter your first name.' : 'Please enter a valid email address.';
-      return;
-    }
-    err.style.display = 'none';
-    document.getElementById('email-btn').style.display    = 'none';
-    document.getElementById('email-confirm').style.display = 'block';
-    // fetch('/api/send-trial', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({name,email}) }).catch(()=>{});
-  }
+
 
   recalc();
 </script>
