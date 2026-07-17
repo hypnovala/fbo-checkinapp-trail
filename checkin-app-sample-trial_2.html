@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Free Nervous System Check-In · Brock John Somatic Bodywork</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; border: 0 solid; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; color-scheme: dark; }
+
+    :root {
+      --gold:       #C9A96E;
+      --gold-10:    rgba(201,169,110,0.10);
+      --gold-15:    rgba(201,169,110,0.15);
+      --gold-20:    rgba(201,169,110,0.20);
+      --gold-30:    rgba(201,169,110,0.30);
+      --gold-40:    rgba(201,169,110,0.40);
+      --cream:      #F5EED8;
+      --cream-muted:#C8BC9E;
+      --black:      #09080A;
+      --surface:    #0E0C0F;
+      --w5:         rgba(255,255,255,0.05);
+      --w7:         rgba(255,255,255,0.07);
+      --w10:        rgba(255,255,255,0.10);
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--black);
+      color: var(--cream);
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      background-image:
+        radial-gradient(circle at top, rgba(201,169,110,0.14) 0%, transparent 30%),
+        radial-gradient(circle at 18% 18%, rgba(107,76,42,0.12) 0%, transparent 24%),
+        radial-gradient(circle at 82% 0, rgba(201,169,110,0.08) 0%, transparent 28%),
+        linear-gradient(180deg, #09080A, #0E0C0F 48%, #060508);
+    }
+
+    /* ── Trial banner ── */
+    .trial-bar {
+      background: linear-gradient(to right, rgba(201,169,110,0.15), rgba(201,169,110,0.08));
+      border-bottom: 1px solid var(--gold-20);
+      text-align: center;
+      padding: 0.5rem 1rem;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .glass-panel {
+      border-radius: 28px;
+      border: 1px solid var(--w10);
+      background-color: var(--w7);
+      box-shadow: 0 0 0 1px rgba(201,169,110,0.10), 0 28px 90px rgba(2,1,4,0.62);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+    }
+
+    .page-wrap { position: relative; overflow: hidden; }
+    .bg-radial {
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at top, rgba(201,169,110,0.18) 0%, transparent 30%),
+        radial-gradient(circle at 18% 18%, rgba(107,76,42,0.12) 0%, transparent 24%),
+        radial-gradient(circle at 82% 0, rgba(201,169,110,0.09) 0%, transparent 28%);
+      opacity: 0.9;
+    }
+    .inner {
+      position: relative;
+      margin: 0 auto;
+      max-width: 80rem;
+      padding: 2rem 1rem 5rem;
+    }
+    @media (min-width: 640px)  { .inner { padding-left: 1.5rem; padding-right: 1.5rem; } }
+    @media (min-width: 1024px) { .inner { padding-top: 3rem; padding-bottom: 5rem; padding-left: 2rem; padding-right: 2rem; } }
+
+    .space-y-8 > * + * { margin-top: 2rem; }
+    .space-y-6 > * + * { margin-top: 1.5rem; }
+    .space-y-4 > * + * { margin-top: 1rem; }
+
+    .hero-grid { display: grid; gap: 1.5rem; }
+    @media (min-width: 1024px) { .hero-grid { grid-template-columns: 1.1fr 0.9fr; } }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-radius: 9999px;
+      border: 1px solid var(--gold-20);
+      background-color: var(--gold-10);
+      padding: 0.5rem 1rem;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      color: var(--gold);
+    }
+    h1 {
+      margin-top: 1.5rem;
+      font-size: clamp(2rem, 6vw, 3.75rem);
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      color: var(--cream);
+      line-height: 1.1;
+    }
+    .hero-sub {
+      margin-top: 1.25rem;
+      font-size: 1rem;
+      line-height: 1.75rem;
+      color: var(--cream-muted);
+      max-width: 42rem;
+    }
+    .feature-grid { margin-top: 2rem; display: grid; gap: 1rem; }
+    @media (min-width: 640px) { .feature-grid { grid-template-columns: repeat(3, 1fr); } }
+    .feature-card {
+      border-radius: 24px;
+      border: 1px solid var(--w10);
+      background-color: var(--w5);
+      padding: 1rem;
+    }
+    .feature-card p:first-child { font-size: 0.875rem; font-weight: 500; color: var(--cream); }
+    .feature-card p:last-child  { margin-top: 0.5rem; font-size: 0.875rem; line-height: 1.5rem; color: rgba(200,188,158,0.8); }
+
+    .sidebar-eyebrow {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      color: rgba(201,169,110,0.8);
+    }
+    .sidebar-eyebrow + h2 {
+      margin-top: 0.75rem;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--cream);
+    }
+    .subtle-copy {
+      margin-top: 1rem;
+      font-size: 0.875rem;
+      line-height: 1.5rem;
+      color: var(--cream-muted);
+    }
+    @media (min-width: 768px) { .subtle-copy { font-size: 1rem; } }
+
+    .load-box {
+      margin-top: 2rem;
+      border-radius: 24px;
+      border: 1px solid var(--w10);
+      background-color: var(--w5);
+      padding: 1.25rem;
+    }
+    .load-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .load-label { font-size: 0.875rem; color: rgba(200,188,158,0.8); }
+    .load-state { margin-top: 0.5rem; font-size: 1.875rem; font-weight: 600; color: var(--cream); }
+    .load-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 4rem;
+      height: 4rem;
+      flex-shrink: 0;
+      border-radius: 9999px;
+      border: 1px solid var(--gold-20);
+      background-color: var(--gold-10);
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--gold);
+    }
+    .gauge-wrap {
+      margin-top: 1rem;
+      height: 6px;
+      border-radius: 9999px;
+      background: var(--w10);
+      overflow: hidden;
+    }
+    .gauge-fill {
+      height: 100%;
+      border-radius: 9999px;
+      background: linear-gradient(to right, #6DB87A, var(--gold), #C05C3A);
+      transition: width 0.4s ease;
+    }
+    .gauge-wrap.glowing { animation: gaugeGlow 2s ease-in-out infinite; }
+
+    .sidebar-bullets { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+    .bullet-row { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.875rem; color: var(--cream-muted); }
+    .bullet-dot { margin-top: 0.25rem; width: 0.5rem; height: 0.5rem; border-radius: 9999px; background: var(--gold); flex-shrink: 0; }
+
+    /* Questions */
+    .q-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+    .q-title { font-size: 1rem; font-weight: 500; color: var(--cream); }
+    @media (min-width: 768px) { .q-title { font-size: 1.125rem; } }
+    .q-hint { margin-top: 0.25rem; font-size: 0.875rem; color: var(--cream-muted); }
+    .q-badge {
+      flex-shrink: 0;
+      border-radius: 9999px;
+      border: 1px solid var(--gold-20);
+      background-color: var(--gold-10);
+      padding: 0.25rem 0.75rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+    .slider-wrap { margin-top: 1.25rem; }
+    input[type=range] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 0.5rem;
+      border-radius: 9999px;
+      background: var(--w10);
+      cursor: pointer;
+      outline: none;
+      accent-color: var(--gold);
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 3px solid var(--surface);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+      cursor: pointer;
+      transition: transform 0.1s, box-shadow 0.1s;
+    }
+    input[type=range]:active::-webkit-slider-thumb {
+      transform: scale(1.18);
+      box-shadow: 0 0 0 6px rgba(201,169,110,0.2), 0 2px 6px rgba(0,0,0,0.4);
+    }
+    input[type=range]::-moz-range-thumb {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 3px solid var(--surface);
+    }
+    .slider-ends {
+      margin-top: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: rgba(200,188,158,0.7);
+    }
+
+    /* Notes */
+    .notes-header { display: flex; align-items: center; gap: 0.75rem; color: var(--gold); }
+    .section-title { font-size: 1.125rem; font-weight: 500; color: var(--cream); }
+    @media (min-width: 768px) { .section-title { font-size: 1.25rem; } }
+    textarea {
+      margin-top: 1.25rem;
+      min-height: 8rem;
+      width: 100%;
+      border-radius: 24px;
+      border: 1px solid var(--w10);
+      background-color: var(--w5);
+      padding: 1rem;
+      font-size: 0.875rem;
+      color: var(--cream);
+      font-family: inherit;
+      resize: vertical;
+      outline: none;
+    }
+    textarea::placeholder { color: rgba(200,188,158,0.6); }
+    textarea:focus { border-color: var(--gold-30); box-shadow: 0 0 0 2px var(--gold-20); }
+
+    /* Buttons */
+    .btn-row { display: flex; flex-direction: column; gap: 0.75rem; }
+    @media (min-width: 640px) { .btn-row { flex-direction: row; } }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      border-radius: 9999px;
+      background: linear-gradient(to right, var(--gold), #b8953c, var(--cream-muted));
+      padding: 0.75rem 1.5rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--black);
+      border: none;
+      cursor: pointer;
+      transition: transform 0.15s;
+      font-family: inherit;
+    }
+    .btn-primary:hover { transform: scale(1.01); }
+    .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    /* Response */
+    #response-panel { display: none; }
+    .resp-glass {
+      border-radius: 28px;
+      border: 1px solid var(--gold-20);
+      background: linear-gradient(135deg, rgba(201,169,110,0.08) 0%, var(--w5) 100%);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      box-shadow: 0 0 0 1px rgba(201,169,110,0.12), 0 28px 90px rgba(2,1,4,0.62);
+      padding: 1.5rem;
+      overflow: hidden;
+    }
+    @media (min-width: 768px) { .resp-glass { padding: 2rem; } }
+    .resp-eyebrow {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      color: rgba(201,169,110,0.8);
+      margin-bottom: 1.25rem;
+    }
+    .resp-score-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--w10);
+      margin-bottom: 1.25rem;
+    }
+    .resp-score-circle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 4rem; height: 4rem;
+      flex-shrink: 0;
+      border-radius: 9999px;
+      border: 1px solid var(--gold-20);
+      background-color: var(--gold-10);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--gold);
+    }
+    .resp-state   { font-size: 1rem; font-weight: 600; color: var(--cream); }
+    .resp-sublabel { margin-top: 0.25rem; font-size: 0.875rem; color: var(--cream-muted); }
+    .resp-body {
+      font-size: 0.9375rem;
+      line-height: 1.75rem;
+      color: rgba(245,238,216,0.88);
+      margin-bottom: 1.25rem;
+    }
+    .practice-block {
+      border-radius: 24px;
+      border: 1px solid var(--gold-20);
+      background-color: var(--gold-10);
+      padding: 1.25rem;
+    }
+    .practice-eyebrow {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    .practice-text { font-size: 0.875rem; line-height: 1.65; color: var(--cream); }
+
+    /* breath orb */
+    .breath-wrap { display: flex; flex-direction: column; align-items: center; margin: 1.5rem 0 0.25rem; }
+    .breath-orb {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      border: 1.5px solid var(--gold-40);
+      background: radial-gradient(circle at 38% 38%, rgba(201,169,110,0.45), rgba(107,76,42,0.18));
+      animation: breathe 5s ease-in-out infinite;
+    }
+    .breath-label {
+      margin-top: 0.5rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(201,169,110,0.5);
+    }
+
+    /* speak btn */
+    .speak-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      border-radius: 9999px;
+      border: 1px solid var(--gold-20);
+      background: transparent;
+      padding: 0.5rem 1.125rem;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--gold);
+      cursor: pointer;
+      transition: background-color 0.15s;
+      font-family: inherit;
+    }
+    .speak-btn:hover { background-color: var(--gold-15); }
+    .speak-btn.speaking { border-color: var(--gold-40); background-color: var(--gold-10); color: var(--cream); }
+    .speak-btn.speaking svg { animation: breathe 1.5s ease-in-out infinite; }
+    .speak-btn svg { width: 15px; height: 15px; }
+
+    /* Upsell */
+    .upsell-glass {
+      margin-top: 1.5rem;
+      border-radius: 28px;
+      border: 1px solid var(--gold-20);
+      background: linear-gradient(135deg, rgba(201,169,110,0.06) 0%, var(--w5) 100%);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      box-shadow: 0 0 0 1px rgba(201,169,110,0.10), 0 28px 90px rgba(2,1,4,0.5);
+      padding: 1.75rem 1.5rem;
+    }
+    .upsell-eyebrow {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      color: rgba(201,169,110,0.8);
+      margin-bottom: 0.75rem;
+    }
+    .upsell-heading {
+      font-size: clamp(1.35rem, 3vw, 1.75rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--cream);
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+    .upsell-body { font-size: 0.9375rem; line-height: 1.7; color: var(--cream-muted); margin-bottom: 1.25rem; }
+    .upsell-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.5rem; }
+    .upsell-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      font-size: 0.875rem;
+      color: var(--cream);
+    }
+    .upsell-list li::before {
+      content: '';
+      display: inline-block;
+      width: 0.4rem; height: 0.4rem;
+      border-radius: 50%;
+      background: var(--gold);
+      margin-top: 0.45rem;
+      flex-shrink: 0;
+    }
+    .btn-upsell {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      border-radius: 9999px;
+      background: linear-gradient(to right, var(--gold), #b8953c, var(--cream-muted));
+      padding: 0.85rem 2rem;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--black);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+      font-family: inherit;
+      width: 100%;
+    }
+    .btn-upsell:hover { transform: scale(1.01); box-shadow: 0 0 20px rgba(201,169,110,0.25); }
+    .upsell-price {
+      margin-top: 0.75rem;
+      font-size: 0.8rem;
+      color: rgba(200,188,158,0.6);
+      text-align: center;
+    }
+
+    /* email capture */
+    .email-divider {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--w10);
+    }
+    .email-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(200,188,158,0.6);
+      margin-bottom: 0.35rem;
+    }
+    .email-sub { font-size: 0.8rem; color: rgba(200,188,158,0.55); margin-bottom: 0.85rem; line-height: 1.5; }
+    .field-row { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 0.65rem; }
+    input[type=text], input[type=email] {
+      flex: 1;
+      min-width: 130px;
+      padding: 0.65rem 0.9rem;
+      background: var(--w5);
+      border: 1px solid var(--w10);
+      border-radius: 9999px;
+      font-family: inherit;
+      font-size: 0.85rem;
+      color: var(--cream);
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    input[type=text]::placeholder, input[type=email]::placeholder { color: rgba(200,188,158,0.45); }
+    input[type=text]:focus, input[type=email]:focus { border-color: var(--gold-30); }
+    .btn-email {
+      width: 100%;
+      padding: 0.65rem 1rem;
+      background: var(--w10);
+      border: 1px solid var(--w10);
+      border-radius: 9999px;
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--cream);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-email:hover { background: rgba(201,169,110,0.15); border-color: var(--gold-20); }
+    .error-msg {
+      display: none;
+      font-size: 0.78rem;
+      color: #e07060;
+      margin-bottom: 0.5rem;
+    }
+    .email-confirm {
+      display: none;
+      font-size: 0.78rem;
+      color: rgba(200,188,158,0.7);
+      text-align: center;
+      margin-top: 0.5rem;
+    }
+
+    /* Animations */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes breathe {
+      0%, 100% { transform: scale(1);    opacity: 0.55; }
+      50%       { transform: scale(1.18); opacity: 0.9; }
+    }
+    @keyframes gaugeGlow {
+      0%, 100% { box-shadow: none; }
+      50%       { box-shadow: 0 0 10px rgba(201,169,110,0.4); }
+    }
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.7); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    .anim-hero-left  { opacity: 0; animation: fadeUp 0.6s 0.1s ease forwards; }
+    .anim-hero-right { opacity: 0; animation: fadeUp 0.6s 0.25s ease forwards; }
+    .q-card { opacity: 0; animation: fadeUp 0.45s ease forwards; }
+    .q-card:nth-child(1) { animation-delay: 0.05s; }
+    .q-card:nth-child(2) { animation-delay: 0.12s; }
+    .q-card:nth-child(3) { animation-delay: 0.19s; }
+    .q-card:nth-child(4) { animation-delay: 0.26s; }
+    .q-card:nth-child(5) { animation-delay: 0.33s; }
+    .resp-glass        { animation: fadeUp 0.5s ease both; }
+    .resp-score-circle { animation: popIn  0.5s 0.2s ease both; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="trial-bar">Free Sample Trial &nbsp;·&nbsp; One-time experience</div>
+
+  <main class="page-wrap">
+    <div class="bg-radial"></div>
+    <div class="inner">
+      <div class="space-y-8">
+
+        <!-- Hero -->
+        <section class="hero-grid">
+          <div class="glass-panel anim-hero-left" style="padding:1.5rem;">
+            <div class="eyebrow">Free Sample · Brock John Somatic Bodywork</div>
+            <h1>Your body is already trying to tell you something.</h1>
+            <p class="hero-sub">This free check-in takes 3 minutes. Answer five honest questions and receive a grounded response — plus one somatic practice matched to where your body is right now.</p>
+            <div class="feature-grid">
+              <div class="feature-card"><p>No account needed</p><p>One-time, no sign-up required.</p></div>
+              <div class="feature-card"><p>3 minutes</p><p>5 sliders, results immediately.</p></div>
+              <div class="feature-card"><p>Audio reset</p><p>Read aloud with a breathing cue.</p></div>
+            </div>
+          </div>
+
+          <aside class="glass-panel anim-hero-right" style="padding:1.5rem;">
+            <p class="sidebar-eyebrow">Your Check-In</p>
+            <h2>Notice what your body is signaling.</h2>
+            <p class="subtle-copy">There is no right score. This is simply a quieter way to see what your body needs most right now.</p>
+            <div class="load-box">
+              <div class="load-row">
+                <div>
+                  <p class="load-label">Nervous system load</p>
+                  <p class="load-state" id="load-state-text">Moderate</p>
+                </div>
+                <div class="load-badge" id="load-badge">5.0</div>
+              </div>
+              <div class="gauge-wrap" id="gauge-wrap" style="margin-top:1rem;">
+                <div class="gauge-fill" id="gauge-fill" style="width:50%"></div>
+              </div>
+            </div>
+            <div class="sidebar-bullets">
+              <div class="bullet-row"><span class="bullet-dot"></span><span>Members get this every day inside Level One.</span></div>
+              <div class="bullet-row"><span class="bullet-dot"></span><span>Brock reviews responses before your 1:1 call.</span></div>
+              <div class="bullet-row"><span class="bullet-dot"></span><span>Regulation is a practice, not a destination.</span></div>
+            </div>
+          </aside>
+        </section>
+
+        <!-- Questions -->
+        <div class="space-y-6">
+          <div class="space-y-4">
+
+            <div class="glass-panel q-card" style="padding:1.25rem 1.5rem;">
+              <div class="q-header">
+                <div><p class="q-title">How activated or stressed does your body feel right now?</p><p class="q-hint">1 = completely calm, 10 = very stressed or anxious</p></div>
+                <div class="q-badge" id="b1">5/10</div>
+              </div>
+              <div class="slider-wrap">
+                <input type="range" min="1" max="10" value="5" step="1" oninput="updateQ('q1','b1',this.value)">
+                <div class="slider-ends"><span>1</span><span>10</span></div>
+              </div>
+            </div>
+
+            <div class="glass-panel q-card" style="padding:1.25rem 1.5rem;">
+              <div class="q-header">
+                <div><p class="q-title">How physically tired does your body feel?</p><p class="q-hint">1 = energized, 10 = deeply depleted</p></div>
+                <div class="q-badge" id="b2">5/10</div>
+              </div>
+              <div class="slider-wrap">
+                <input type="range" min="1" max="10" value="5" step="1" oninput="updateQ('q2','b2',this.value)">
+                <div class="slider-ends"><span>1</span><span>10</span></div>
+              </div>
+            </div>
+
+            <div class="glass-panel q-card" style="padding:1.25rem 1.5rem;">
+              <div class="q-header">
+                <div><p class="q-title">How much tension are you holding in your body?</p><p class="q-hint">1 = loose and relaxed, 10 = very tight or braced</p></div>
+                <div class="q-badge" id="b3">5/10</div>
+              </div>
+              <div class="slider-wrap">
+                <input type="range" min="1" max="10" value="5" step="1" oninput="updateQ('q3','b3',this.value)">
+                <div class="slider-ends"><span>1</span><span>10</span></div>
+              </div>
+            </div>
+
+            <div class="glass-panel q-card" style="padding:1.25rem 1.5rem;">
+              <div class="q-header">
+                <div><p class="q-title">How easy is it to take a full, deep breath right now?</p><p class="q-hint">1 = breathing freely, 10 = feels restricted or shallow</p></div>
+                <div class="q-badge" id="b4">5/10</div>
+              </div>
+              <div class="slider-wrap">
+                <input type="range" min="1" max="10" value="5" step="1" oninput="updateQ('q4','b4',this.value)">
+                <div class="slider-ends"><span>1</span><span>10</span></div>
+              </div>
+            </div>
+
+            <div class="glass-panel q-card" style="padding:1.25rem 1.5rem;">
+              <div class="q-header">
+                <div><p class="q-title">How emotionally supported do you feel right now?</p><p class="q-hint">1 = well supported, 10 = very alone or unsupported</p></div>
+                <div class="q-badge" id="b5">5/10</div>
+              </div>
+              <div class="slider-wrap">
+                <input type="range" min="1" max="10" value="5" step="1" oninput="updateQ('q5','b5',this.value)">
+                <div class="slider-ends"><span>1</span><span>10</span></div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Notes -->
+          <div class="glass-panel" style="padding:1.5rem;">
+            <div class="notes-header">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.4 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7.4"/><path d="M2 6h4"/><path d="M2 10h4"/><path d="M2 14h4"/><path d="M2 18h4"/><path d="M21.378 5.626a1 1 0 1 0-3.004-3.004l-5.01 5.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"/></svg>
+              <span class="section-title">Optional — a few words</span>
+            </div>
+            <p class="subtle-copy" style="margin-top:0.75rem;">A word or two is enough. This is just for you.</p>
+            <textarea id="notes" placeholder="e.g. shoulders are tight, mind won't stop, feeling disconnected..."></textarea>
+          </div>
+
+          <!-- CTA -->
+          <div class="btn-row">
+            <button class="btn-primary" id="submit-btn" onclick="submitTrial()">
+              Get My Nervous System Reset
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Response -->
+        <div id="response-panel">
+          <div class="resp-glass">
+            <p class="resp-eyebrow">Your Check-In Result</p>
+            <div class="resp-score-row">
+              <div class="resp-score-circle" id="resp-circle">5.0</div>
+              <div>
+                <p class="resp-state" id="resp-state">Moderate activation</p>
+                <p class="resp-sublabel">Average nervous system load</p>
+              </div>
+            </div>
+            <p class="resp-body" id="resp-body"></p>
+            <div class="practice-block">
+              <p class="practice-eyebrow">Your Somatic Practice Right Now</p>
+              <p class="practice-text" id="resp-practice"></p>
+            </div>
+            <div class="breath-wrap">
+              <div class="breath-orb"></div>
+              <span class="breath-label">breathe with this</span>
+            </div>
+            <button class="speak-btn" id="speak-btn" onclick="toggleSpeak()">
+              <svg id="speak-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+              <span id="speak-label">Read aloud</span>
+            </button>
+          </div>
+
+          <!-- Upsell -->
+          <div class="upsell-glass">
+            <p class="upsell-eyebrow">This is just the beginning</p>
+            <h3 class="upsell-heading">Level One Bodywork —<br>daily support for what you felt just now.</h3>
+            <p class="upsell-body">Members get this check-in every day, plus Brock reviews your responses before each 1:1 session. You also receive the full somatic reset toolkit and access to monthly bodywork calls.</p>
+            <ul class="upsell-list">
+              <li>Daily Brock Check-In App (the full version)</li>
+              <li>Brock Book Guide — 30-min structured coaching sessions</li>
+              <li>Monthly 1:1 somatic call with Brock</li>
+              <li>Nervous System Reset Worksheets</li>
+              <li>Priority access to Houston in-person sessions</li>
+            </ul>
+            <a class="btn-upsell" href="https://brockjohn.com" target="_blank">
+              Join Level One Bodywork
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+            <p class="upsell-price">$39 / month &nbsp;·&nbsp; Cancel any time &nbsp;·&nbsp; Houston, TX</p>
+
+            <!-- Soft email capture -->
+            <div class="email-divider">
+              <p class="email-eyebrow">Want a copy sent to you?</p>
+              <p class="email-sub">Leave your name and email and Brock will send your results plus a free somatic reset guide.</p>
+              <div class="field-row">
+                <input type="text"  id="first-name" placeholder="First name"     autocomplete="given-name"/>
+                <input type="email" id="email"      placeholder="Email address"  autocomplete="email"/>
+              </div>
+              <p class="error-msg" id="error-msg"></p>
+              <button class="btn-email" id="email-btn" onclick="submitEmail()">Send Me the Results</button>
+              <p class="email-confirm" id="email-confirm">Got it — check your inbox.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+<script>
+  const vals = { q1:5, q2:5, q3:5, q4:5, q5:5 };
+
+  function updateQ(key, badgeId, v) {
+    vals[key] = parseInt(v, 10);
+    document.getElementById(badgeId).textContent = v + '/10';
+    recalc();
+  }
+
+  function recalc() {
+    const arr = Object.values(vals);
+    const avg = arr.reduce((a,b) => a+b, 0) / arr.length;
+    document.getElementById('load-badge').textContent = avg.toFixed(1);
+    document.getElementById('gauge-fill').style.width = ((avg-1)/9*100).toFixed(1) + '%';
+    const states = ['','Settled','Low load','Moderate','Moderate','Moderate','Moderate','Elevated','High','Very high','Critical'];
+    document.getElementById('load-state-text').textContent = states[Math.round(avg)] || 'Moderate';
+    document.getElementById('gauge-wrap').classList.toggle('glowing', avg >= 7);
+  }
+
+  function submitTrial() {
+    const scores = { activation: vals.q1, fatigue: vals.q2, tension: vals.q3, breath: vals.q4, support: vals.q5 };
+    const avg = Object.values(scores).reduce((a,b) => a+b, 0) / 5;
+    const { state, body, practice } = buildResponse(avg, scores);
+
+    document.getElementById('resp-circle').textContent    = avg.toFixed(1);
+    document.getElementById('resp-state').textContent     = state;
+    document.getElementById('resp-body').textContent      = body;
+    document.getElementById('resp-practice').textContent  = practice;
+
+    const panel = document.getElementById('response-panel');
+    panel.style.display = 'block';
+    panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    const btn = document.getElementById('submit-btn');
+    btn.textContent = 'Done — see your results below';
+    btn.disabled = true;
+  }
+
+  function buildResponse(avg, s) {
+    let state, body, practice;
+    if (avg <= 3) {
+      state    = 'Low activation · Settled';
+      body     = 'Your nervous system is in a relatively regulated place right now. Your body is available. This is a good window to integrate and receive — not to push or produce. When your system is this settled, somatic practices land deeply.';
+      practice = 'Body Scan Arrival. Close your eyes. Slowly move your attention from the soles of your feet up through your legs, belly, chest, shoulders, and head. Pause anywhere you notice ease or softness. Breathe into that place. Let your system register: this is what safety feels like. 4–5 minutes.';
+    } else if (avg <= 5) {
+      state    = 'Moderate load · Manageable';
+      body     = 'Your body is carrying a moderate load right now — not overwhelmed, but not fully settled. This mid-range activation is very common. A few minutes of deliberate regulation can prevent it from accumulating further across the day.';
+      practice = 'Extended Exhale Breath. Inhale through your nose for 4 counts. Exhale slowly through slightly parted lips for 7–8 counts. The long exhale activates the parasympathetic branch of your nervous system and signals to your brainstem that the threat is passing. 6 rounds.';
+    } else if (avg <= 7) {
+      state    = 'Elevated activation · Needs tending';
+      body     = 'Your body is working hard right now. This is not a problem — it is your nervous system doing its job. What it needs is a signal that the emergency is over, even just for a few minutes. Regulation is not a reward for finishing your work. It is how you return to capacity.';
+      practice = 'Shake and Ground. Stand with feet hip-width apart. Let your knees bend softly and allow small, spontaneous shaking to move through your legs and hips for 60–90 seconds. Then stop, feel both feet fully on the floor, and take three slow breaths. Shaking discharges stored survival activation from the body.';
+    } else {
+      state    = 'High activation · Immediate care needed';
+      body     = 'Your check-in is showing significant activation across several areas. Your body is asking for care right now — not willpower or pushing through. Even five minutes of deliberate settling has a measurable biological effect. You do not have to feel better immediately. You just need to begin.';
+      practice = 'Cold Water Dive Reflex. Run cold water over your inner wrists and the back of your neck for 30–45 seconds. This activates the mammalian dive reflex and rapidly slows heart rate. Then sit somewhere as quiet as possible and breathe out very slowly — longer exhale than inhale — for 2 minutes. Do not rush.';
+    }
+    const labels  = ['activation','fatigue','tension','breath','support'];
+    const highest = labels.reduce((p, c) => s[c] > s[p] ? c : p);
+    const personal = {
+      activation: ' The activation you are feeling is the primary signal today.',
+      fatigue:    ' Deep fatigue is what your body is carrying most.',
+      tension:    ' Physical tension is the loudest signal in your body right now.',
+      breath:     ' The restriction in your breath is worth attending to first.',
+      support:    ' A sense of isolation or lack of support is at the centre of what your body is expressing.',
+    };
+    body += personal[highest] || '';
+    return { state, body, practice };
+  }
+
+  let _speaking = false;
+  function toggleSpeak() {
+    if (!window.speechSynthesis) return;
+    if (_speaking) { window.speechSynthesis.cancel(); _setSpeakState(false); return; }
+    const text = [
+      document.getElementById('resp-state').textContent,
+      document.getElementById('resp-body').textContent,
+      'Your practice for right now:',
+      document.getElementById('resp-practice').textContent
+    ].join('. ');
+    const u = new SpeechSynthesisUtterance(text);
+    u.rate = 0.87; u.pitch = 0.95;
+    u.onstart = () => _setSpeakState(true);
+    u.onend   = () => _setSpeakState(false);
+    u.onerror = () => _setSpeakState(false);
+    window.speechSynthesis.speak(u);
+  }
+  function _setSpeakState(on) {
+    _speaking = on;
+    document.getElementById('speak-btn').classList.toggle('speaking', on);
+    document.getElementById('speak-label').textContent = on ? 'Stop audio' : 'Read aloud';
+    document.getElementById('speak-icon').innerHTML = on
+      ? '<line x1="1" y1="1" x2="23" y2="23"/><path d="M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4a3 3 0 0 0-5.94-.6"/><path d="M17 16.95A7 7 0 0 1 5 12v-2m14 0v2a7 7 0 0 1-.11 1.23"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/>'
+      : '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>';
+  }
+
+  function validateEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
+  function submitEmail() {
+    const name  = document.getElementById('first-name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const err   = document.getElementById('error-msg');
+    if (!name || !validateEmail(email)) {
+      err.style.display = 'block';
+      err.textContent   = !name ? 'Please enter your first name.' : 'Please enter a valid email address.';
+      return;
+    }
+    err.style.display = 'none';
+    document.getElementById('email-btn').style.display    = 'none';
+    document.getElementById('email-confirm').style.display = 'block';
+    // fetch('/api/send-trial', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({name,email}) }).catch(()=>{});
+  }
+
+  recalc();
+</script>
+</body>
+</html>
